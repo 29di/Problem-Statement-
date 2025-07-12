@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Home - StackIt</title>
+</head>
+<body class="p-6 bg-gray-100">
+  <h1 class="text-3xl font-bold mb-4">All Questions</h1>
+  <a href="/ask" class="text-blue-600 underline">+ Ask a Question</a>
+  <div class="mt-4">
+    {% for q in questions %}
+      <div class="border bg-white p-4 rounded mb-4 shadow">
+        <a href="/question/{{ q.id }}" class="text-xl font-semibold text-blue-700 hover:underline">{{ q.title }}</a>
+        <p class="text-sm text-gray-600 mt-1">Tags: {{ q.tags }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
