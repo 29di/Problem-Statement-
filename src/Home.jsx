@@ -1,23 +1,41 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+// import axios from 'axios';
 import QuestionCard from '../components/QuestionCard'; // ✅ Correct import path
 
 const Home = () => {
-  const [questions, setQuestions] = useState([]);
+  const dummyQuestions = [
+    {
+      _id: '1',
+      title: 'How to center a div using Tailwind?',
+      description: 'I tried using <code>flex justify-center items-center</code> but it doesn’t center vertically.',
+      tags: ['CSS', 'Tailwind'],
+      answers: [],
+    },
+    {
+      _id: '2',
+      title: 'What is the difference between let and var?',
+      description: 'I’m confused about scoping. Can someone explain the difference?',
+      tags: ['JavaScript', 'Variables'],
+      answers: ['There’s a key difference in scoping.'],
+    },
+  ];
+
+  const [questions, setQuestions] = useState(dummyQuestions);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('newest');
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/questions`);
-        setQuestions(res.data);
-      } catch (error) {
-        console.error('Error fetching questions:', error);
-      }
-    };
-    fetchQuestions();
-  }, []);
+
+//   useEffect(() => {
+//     const fetchQuestions = async () => {
+//       try {
+//         const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/questions`);
+//         setQuestions(res.data);
+//       } catch (error) {
+//         console.error('Error fetching questions:', error);
+//       }
+//     };
+//     fetchQuestions();
+//   }, []);
 
   const filtered = questions
     .filter(q => q.title.toLowerCase().includes(search.toLowerCase()))
